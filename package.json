@@ -1,0 +1,31 @@
+{
+  "name": "zan-sdk",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build",
+    "build:deps": "father prebundle",
+    "prepublishOnly": "father doctor && npm run build"
+  },
+  "keywords": [],
+  "authors": [],
+  "license": "MIT",
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "father": "^4.5.1"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "viem": "^2.23.5",
+    "zod": "^3.24.2"
+  }
+}
