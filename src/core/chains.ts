@@ -83,3 +83,7 @@ export const getChainFromEndpoint = (endpoint: string) => {
   if (viemChain) return viemChain;
   throw new ZANNotSupported(endpoint);
 };
+
+export const transformEndpoint = (endpoint: string) => {
+  return endpoint.replace("/node/", "/data/");
+};
