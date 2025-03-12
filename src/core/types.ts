@@ -4,7 +4,7 @@ import { ZanNftAndTokenActions } from "./advancedApi/lib/type";
 export interface CoreArguments {
   endpoint: string;
   chain?: Chain;
-  isAdvanced?: boolean;
+  advanced?: boolean;
 }
 
 export type ZanClient = PublicClient & ZanNftAndTokenActions;
