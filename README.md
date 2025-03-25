@@ -1,33 +1,35 @@
-# Zan SDK
+# ZAN SDK
 
-## 项目简介
+## Introduction
 
-Zan SDK 是一个用于简化 Web3 开发的工具包。它提供了一系列功能，帮助开发者更轻松地与区块链进行交互。无论是与区块链节点的通信，还是与去中心化应用（DApp）进行交互，Zan SDK 都能提供强大的支持。
+ZAN SDK is a toolkit designed to simplify Web3 development. It provides a series of functions to help developers interact with blockchains more easily. Whether communicating with blockchain nodes or interacting with decentralized applications (DApps), ZAN SDK offers powerful support.
 
-## 功能特性
+## Features
 
-- **区块链交互**: 简化与区块链节点的通信。
-- **DApp 支持**: 提供与去中心化应用的无缝集成。
+- **Blockchain Interaction**: Simplifies communication with blockchain nodes.
+- **DApp Support**: Provides seamless integration with decentralized applications.
 
-## 安装
+## Installation
 
-使用 npm 安装 ZAN SDK：
+Install ZAN SDK using npm:
 
 ```bash
 npm install zan-sdk
 ```
 
-或使用 yarn 安装：
+Or using yarn:
 
 ```bash
 yarn add zan-sdk
 ```
 
-## 快速开始
+## Quick Start
 
-以下是一个简单的示例，展示了如何使用 Zan SDK 和 Solana 交互：
+Here's a simple example showing how to use ZAN SDK to interact with Solana:
 
-首先到 ZAN 的官网获取到对应的 API Key.
+First, obtain the corresponding API Key from [ZAN](https://zan.top/service/apikeys).
+
+### Solana
 
 ```typescript
 import { Solana } from "zan-sdk";
@@ -39,14 +41,46 @@ const solana = new Solana({
 solana.connection.getBlockHeight().then((res) => console.log(res));
 ```
 
-## 文档
+### ETH
 
-详细的文档和使用指南请访问 [Zan SDK 文档](https://example.com/docs)。
+```typescript
+import { Core } from "./dist/esm/core/core";
 
-## 贡献
+const eth = new Core({
+  endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
+});
 
-欢迎贡献代码！请阅读我们的 [贡献指南](https://example.com/contributing) 以了解更多信息。
+eth.client.getBlockNumber().then((blockNumber) => {
+  console.log(blockNumber);
+});
+```
 
-## 许可证
+### ZAN Advanced API
 
-本项目采用 MIT 许可证。详情请参阅 [LICENSE](./LICENSE) 文件。
+[ZAN Advanced API List](https://docs.zan.top/reference/zan_getnftmetadata-advanced)
+
+```typescript
+import { Core } from "./dist/esm/core/core";
+
+// Noticed that URL is different from basic Node Service, replace 'node' with 'data'.
+
+const eth = new Core({
+  endpoint: "https://api.zan.top/data/v1/eth/mainnet/{YOUR API KEY}",
+});
+
+eth.client
+  .getNftMetadata({
+    contractAddress: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+  })
+  .then((blockNumber) => {
+    console.log(blockNumber);
+  });
+```
+
+## Documentation
+
+For detailed documentation and usage guides, visit [ZAN Documentation](https://docs.zan.top).
+
+## Contribution
+
+Code contributions are welcome!
