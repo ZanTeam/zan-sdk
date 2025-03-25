@@ -5,5 +5,8 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "lib": ["es2022", "dom"],
+    "paths": {
+      "@/*": ["src/*"],
+    }
   }
 }

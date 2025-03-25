@@ -1,20 +1,32 @@
-import { createPublicClient, http, publicActions, PublicClient } from "viem";
-import { CoreArguments } from "./types";
-import { getChainFromEndpoint } from "./chains";
+import {
+  Client,
+  createPublicClient,
+  http,
+  publicActions,
+  PublicClient,
+} from "viem";
+import { CoreArguments, ZanClient } from "./types";
+import { getChainFromEndpoint, transformEndpoint } from "./chains";
+import { ntfEvmActions } from "./advancedApi/nft_evm";
+import { ZanNftAndTokenActions } from "./advancedApi/lib/type";
 
 // WIP: 后续添加 advanced Api
 export const buildZANActions = () => {
-  return () => ({});
+  return (client: Client): ZanNftAndTokenActions => ({
+    ...ntfEvmActions(client),
+  });
 };
 export class Core {
   readonly endpoint: string;
-  readonly client: PublicClient;
+  readonly client: ZanClient;
 
-  constructor({ endpoint, chain }: CoreArguments) {
+  constructor({ endpoint, chain, isAdvanced }: CoreArguments) {
     this.endpoint = endpoint;
     const baseClient = createPublicClient({
       chain: chain || getChainFromEndpoint(endpoint),
-      transport: http(this.endpoint),
+      transport: http(
+        isAdvanced ? transformEndpoint(this.endpoint) : this.endpoint
+      ),
     }).extend(publicActions);
 
     const zanClient = baseClient.extend(buildZANActions());
