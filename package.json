@@ -8,7 +8,9 @@
     "dev": "father dev",
     "build": "father build",
     "build:deps": "father prebundle",
-    "prepublishOnly": "father doctor && npm run build"
+    "prepublishOnly": "father doctor && npm run build",
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
+    "prepare": "husky"
   },
   "keywords": [],
   "authors": [],
@@ -21,11 +23,27 @@
     "access": "public"
   },
   "devDependencies": {
-    "father": "^4.5.1"
+    "@eslint/js": "^9.23.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.4",
+    "eslint-plugin-react": "^7.37.4",
+    "father": "^4.5.1",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.28.0"
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.0",
     "viem": "^2.23.5",
     "zod": "^3.24.2"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "npm run lint:script",
+      "git add ."
+    ]
   }
 }

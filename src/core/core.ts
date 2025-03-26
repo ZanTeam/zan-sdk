@@ -1,10 +1,4 @@
-import {
-  Client,
-  createPublicClient,
-  http,
-  publicActions,
-  PublicClient,
-} from "viem";
+import { Client, createPublicClient, http, publicActions } from "viem";
 import { CoreArguments, ZanClient } from "./types";
 import { getChainFromEndpoint, transformEndpoint } from "./chains";
 import { ntfEvmActions } from "./advancedApi/nft_evm";
@@ -20,12 +14,12 @@ export class Core {
   readonly endpoint: string;
   readonly client: ZanClient;
 
-  constructor({ endpoint, chain, isAdvanced }: CoreArguments) {
+  constructor({ endpoint, chain, advanced }: CoreArguments) {
     this.endpoint = endpoint;
     const baseClient = createPublicClient({
       chain: chain || getChainFromEndpoint(endpoint),
       transport: http(
-        isAdvanced ? transformEndpoint(this.endpoint) : this.endpoint
+        advanced ? transformEndpoint(this.endpoint) : this.endpoint,
       ),
     }).extend(publicActions);
 

@@ -60,6 +60,7 @@ const praseInfoFromEndpoint = (endpoint: string) => {
     const url = new URL(endpoint);
     paths = url.pathname.split("/");
     origin = url.origin;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     throw new ZANInvalidEndpointUrl(endpoint);
   }
