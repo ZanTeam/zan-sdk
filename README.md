@@ -44,7 +44,7 @@ solana.connection.getBlockHeight().then((res) => console.log(res));
 ### ETH
 
 ```typescript
-import { Core } from "./dist/esm/core/core";
+import { Core } from "zan-sdk";
 
 const eth = new Core({
   endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
@@ -60,12 +60,10 @@ eth.client.getBlockNumber().then((blockNumber) => {
 [ZAN Advanced API List](https://docs.zan.top/reference/zan_getnftmetadata-advanced)
 
 ```typescript
-import { Core } from "./dist/esm/core/core";
-
-// Noticed that URL is different from basic Node Service, replace 'node' with 'data'.
+import { Core } from "zan-sdk";
 
 const eth = new Core({
-  endpoint: "https://api.zan.top/data/v1/eth/mainnet/{YOUR API KEY}",
+  endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
 });
 
 eth.client

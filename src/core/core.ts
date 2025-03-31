@@ -3,27 +3,39 @@ import { CoreArguments, ZanClient } from "./types";
 import { getChainFromEndpoint, transformEndpoint } from "./chains";
 import { ntfEvmActions } from "./advancedApi/nft_evm";
 import { ZanNftAndTokenActions } from "./advancedApi/lib/type";
+import { ZANInvalidEndpointUrl } from "@/lib/errors/ZANInvalidEndpointUrl";
 
 // WIP: 后续添加 advanced Api
-export const buildZANActions = () => {
-  return (client: Client): ZanNftAndTokenActions => ({
-    ...ntfEvmActions(client),
+export const buildZANActions = (advancedClient: Client) => {
+  return (): ZanNftAndTokenActions => ({
+    ...ntfEvmActions(advancedClient),
   });
 };
 export class Core {
   readonly endpoint: string;
   readonly client: ZanClient;
 
-  constructor({ endpoint, chain, advanced }: CoreArguments) {
-    this.endpoint = endpoint;
-    const baseClient = createPublicClient({
-      chain: chain || getChainFromEndpoint(endpoint),
-      transport: http(
-        advanced ? transformEndpoint(this.endpoint) : this.endpoint,
-      ),
-    }).extend(publicActions);
+  constructor({ endpoint, chain }: CoreArguments) {
+    if (!endpoint.includes('node')) {
+      throw new ZANInvalidEndpointUrl(endpoint);
+    }
 
-    const zanClient = baseClient.extend(buildZANActions());
+    this.endpoint = endpoint;
+    const chainSystem = chain || getChainFromEndpoint(endpoint);
+
+    const baseClient = createPublicClient({
+      chain: chainSystem,
+      transport: http(this.endpoint),
+    }).extend(publicActions);
+    
+    const advancedClient = createPublicClient({
+      chain: chainSystem,
+      transport: http(
+        transformEndpoint(this.endpoint),
+      ),
+    });
+
+    const zanClient = baseClient.extend(buildZANActions(advancedClient));
     this.client = zanClient;
   }
 }
