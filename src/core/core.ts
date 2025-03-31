@@ -4,11 +4,13 @@ import { getChainFromEndpoint, transformEndpoint } from "./chains";
 import { ntfEvmActions } from "./advancedApi/nft_evm";
 import { ZanNftAndTokenActions } from "./advancedApi/lib/type";
 import { ZANInvalidEndpointUrl } from "@/lib/errors/ZANInvalidEndpointUrl";
+import { tokenEvmActions } from "./advancedApi/token_evm";
 
 // WIP: 后续添加 advanced Api
 export const buildZANActions = (advancedClient: Client) => {
   return (): ZanNftAndTokenActions => ({
     ...ntfEvmActions(advancedClient),
+    ...tokenEvmActions(advancedClient)
   });
 };
 export class Core {

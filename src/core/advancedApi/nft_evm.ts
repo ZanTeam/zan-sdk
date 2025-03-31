@@ -4,8 +4,6 @@ import {
   ZanNftMetaDataRequestSchema,
   ZanNftMetaDataResponse,
 } from "./lib/schema/zan_getNftMetaData";
-import { ZodType } from "zod";
-import { ZANInvalidInputParams } from "@/lib/errors/ZANInvalidInputParams";
 import { ZanNftSchema } from "./lib/type";
 import { ZanNftByOwnerRequest, ZanNftByOwnerRequestSchema, ZanNftByOwnerResponse } from "./lib/schema/zan_getNftsByOwner";
 import { ZanNftIDsRequest, ZanNftIDsRequestSchema, ZanNftIDsResponse } from "./lib/schema/zan_getNftIDs";
@@ -14,17 +12,10 @@ import { ZanGetNFTHoldersRequest, ZanGetNFTHoldersRequestSchema, ZanGetNFTHolder
 import { ZanGetNftIDHoldersRequest, ZanGetNftIDHoldersRequestSchema, ZanGetNftIDHoldersResponse } from "./lib/schema/zan_getNftIDHolders";
 import { ZanGetNftCollectionHoldersRequest, ZanGetNftCollectionHoldersRequestSchema, ZanGetNftCollectionHoldersResponse } from "./lib/schema/zan_getNftCollectionHolders";
 import { ZanGetNftTransfersRequest, ZanGetNftTransfersRequestSchema, ZanGetNftTransfersResponse } from "./lib/schema/zan_getNftTransfers";
-
-const validateConfig = (args: unknown, schema: ZodType<unknown>) => {
-  const validation = schema.safeParse(args);
-  if (!validation.success) {
-    throw new ZANInvalidInputParams(validation.error);
-  }
-};
+import { validateConfig } from "./lib/utils";
 
 export const ntfEvmActions = (client: Client) => {
   return {
-
     async zanGetNftMetadata(args: ZanNftMetaDataRequest) {
       validateConfig(args, ZanNftMetaDataRequestSchema);
       return await client.request<
