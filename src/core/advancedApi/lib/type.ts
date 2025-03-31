@@ -4,12 +4,22 @@ import {
   ZanNftMetaDataRequest,
   ZanNftMetaDataResponse,
 } from "./schema/zan_getNftMetaData";
+import { ZanNftByOwnerMethod, ZanNftByOwnerResponse } from "./schema/zan_getNftsByOwner";
 
 type ZanNftMethods = [ZanNftMetaDataMethod];
-export type ZanNftSchema = RpcSchemaOverride & ZanNftMethods;
+type ZanNftByOwnerMethods = [ZanNftByOwnerMethod];
+export type ZanNftSchema = RpcSchemaOverride & ZanNftMethods & ZanNftByOwnerMethods;
 
 export type ZanNftAndTokenActions = {
-  getNftMetadata: (
+  zanGetNftMetadata: (
     args: ZanNftMetaDataRequest
   ) => Promise<ZanNftMetaDataResponse>;
+  zanGetNftsByOwner: (
+    args: {
+      ownerAddress: string;
+      tokenType: string;
+      pageSize: number;
+      pageKey: number;
+    }
+  ) => Promise<ZanNftByOwnerResponse>;
 };
