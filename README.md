@@ -32,10 +32,10 @@ First, obtain the corresponding API Key from [ZAN](https://zan.top/service/apike
 ### Solana
 
 ```typescript
-import { Solana } from "zan-sdk";
+import { Solana } from 'zan-sdk';
 
 const solana = new Solana({
-  endpoint: "https://api.zan.top/node/v1/solana/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/solana/mainnet/{YOUR API KEY}',
 });
 
 solana.connection.getBlockHeight().then((res) => console.log(res));
@@ -44,10 +44,10 @@ solana.connection.getBlockHeight().then((res) => console.log(res));
 ### ETH
 
 ```typescript
-import { Core } from "zan-sdk";
+import { Core } from 'zan-sdk';
 
 const eth = new Core({
-  endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}',
 });
 
 eth.client.getBlockNumber().then((blockNumber) => {
@@ -60,15 +60,15 @@ eth.client.getBlockNumber().then((blockNumber) => {
 [ZAN Advanced API List](https://docs.zan.top/reference/zan_getnftmetadata-advanced)
 
 ```typescript
-import { Core } from "zan-sdk";
+import { Core } from 'zan-sdk';
 
 const eth = new Core({
-  endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}',
 });
 
 eth.client
   .getNftMetadata({
-    contractAddress: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+    contractAddress: '0xbd3531da5cf5857e7cfaa92426877b022e612cf8',
   })
   .then((blockNumber) => {
     console.log(blockNumber);

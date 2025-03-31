@@ -1,5 +1,5 @@
-import { ZanSolanaClientOptions } from "./types";
-import { Connection } from "@solana/web3.js";
+import { ZanSolanaClientOptions } from './types';
+import { Connection } from '@solana/web3.js';
 
 export class Solana {
   readonly endpoint: string;
