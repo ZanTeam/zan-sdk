@@ -67,7 +67,7 @@ const eth = new Core({
 });
 
 eth.client
-  .getNftMetadata({
+  .zanGetNftMetadata({
     contractAddress: '0xbd3531da5cf5857e7cfaa92426877b022e612cf8',
   })
   .then((blockNumber) => {
