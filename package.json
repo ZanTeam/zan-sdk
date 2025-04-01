@@ -2,8 +2,14 @@
   "name": "zan-sdk",
   "version": "0.0.1-beta.1",
   "description": "ZAN official SDK",
-  "main": "dist/cjs/index.js",
+  "main": "dist/lib/index.js",
   "module": "dist/esm/index.js",
+  "typings": "dist/esm/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/lib/index.js",
+    "types": "./dist/esm/index.d.ts"
+  },
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -17,7 +23,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "compiled"
+    "README.md"
   ],
   "repository": "https://github.com/ZanTeam/zan-sdk",
   "publishConfig": {
