@@ -25,7 +25,7 @@ yarn add zan-sdk
 
 ## Quick Start
 
-Here's a simple example showing how to use ZAN SDK to interact with Solana:
+Here's a simple example showing how to use ZAN SDK to interact with Solana and Ethereum:
 
 First, obtain the corresponding API Key from [ZAN](https://zan.top/service/apikeys).
 
@@ -70,14 +70,14 @@ eth.client
   .zanGetNftMetadata({
     contractAddress: '0xbd3531da5cf5857e7cfaa92426877b022e612cf8',
   })
-  .then((blockNumber) => {
-    console.log(blockNumber);
+  .then((metadata) => {
+    console.log(metadata);
   });
 ```
 
 ## Documentation
 
-For detailed documentation and usage guides, visit [ZAN Documentation](https://docs.zan.top).
+For detailed documentation and usage guides, visit [ZAN Documentation](https://docs.zan.top/reference/api-instructions).
 
 ## Contribution
 
