@@ -25,17 +25,17 @@ yarn add zan-sdk
 
 ## Quick Start
 
-Here's a simple example showing how to use ZAN SDK to interact with Solana:
+Here's a simple example showing how to use ZAN SDK to interact with Solana and Ethereum:
 
 First, obtain the corresponding API Key from [ZAN](https://zan.top/service/apikeys).
 
 ### Solana
 
 ```typescript
-import { Solana } from "zan-sdk";
+import { Solana } from 'zan-sdk';
 
 const solana = new Solana({
-  endpoint: "https://api.zan.top/node/v1/solana/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/solana/mainnet/{YOUR API KEY}',
 });
 
 solana.connection.getBlockHeight().then((res) => console.log(res));
@@ -44,10 +44,10 @@ solana.connection.getBlockHeight().then((res) => console.log(res));
 ### ETH
 
 ```typescript
-import { Core } from "./dist/esm/core/core";
+import { Core } from 'zan-sdk';
 
 const eth = new Core({
-  endpoint: "https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}',
 });
 
 eth.client.getBlockNumber().then((blockNumber) => {
@@ -60,26 +60,24 @@ eth.client.getBlockNumber().then((blockNumber) => {
 [ZAN Advanced API List](https://docs.zan.top/reference/zan_getnftmetadata-advanced)
 
 ```typescript
-import { Core } from "./dist/esm/core/core";
-
-// Noticed that URL is different from basic Node Service, replace 'node' with 'data'.
+import { Core } from 'zan-sdk';
 
 const eth = new Core({
-  endpoint: "https://api.zan.top/data/v1/eth/mainnet/{YOUR API KEY}",
+  endpoint: 'https://api.zan.top/node/v1/eth/mainnet/{YOUR API KEY}',
 });
 
 eth.client
-  .getNftMetadata({
-    contractAddress: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+  .zanGetNftMetadata({
+    contractAddress: '0xbd3531da5cf5857e7cfaa92426877b022e612cf8',
   })
-  .then((blockNumber) => {
-    console.log(blockNumber);
+  .then((metadata) => {
+    console.log(metadata);
   });
 ```
 
 ## Documentation
 
-For detailed documentation and usage guides, visit [ZAN Documentation](https://docs.zan.top).
+For detailed documentation and usage guides, visit [ZAN Documentation](https://docs.zan.top/reference/api-instructions).
 
 ## Contribution
 

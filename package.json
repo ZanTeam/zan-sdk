@@ -1,7 +1,7 @@
 {
   "name": "zan-sdk",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.1-beta.1",
+  "description": "ZAN official SDK",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
@@ -12,18 +12,21 @@
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
     "prepare": "husky"
   },
-  "keywords": [],
+  "keywords": ["zan", "sdk", "node service"],
   "authors": [],
   "license": "MIT",
   "files": [
     "dist",
     "compiled"
   ],
+  "repository": "https://github.com/ZanTeam/zan-sdk",
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.4",
@@ -43,6 +46,7 @@
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts}": [
       "npm run lint:script",
+      "npx prettier --write .",
       "git add ."
     ]
   }
