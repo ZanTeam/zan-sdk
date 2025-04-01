@@ -27,6 +27,6 @@ assignees: ''
 
 ## Context
 
-- **Ant Design Web3 Version**:
+- **ZAN SDK Version**:
 - **Node Version**:
 - **Platform**:
