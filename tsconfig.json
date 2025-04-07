@@ -2,9 +2,12 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "target": "esnext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "baseUrl": "./",
-    "lib": ["es2022", "dom"],
+    "lib": ["ES2020", "dom"],
     "paths": {
       "@/*": ["src/*"]
     }
