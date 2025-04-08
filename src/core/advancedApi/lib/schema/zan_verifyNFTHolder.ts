@@ -6,7 +6,7 @@ export const ZanVerifyNFTHolderRequestSchema = z.object({
     message: "Invalid account address",
   }),
   tokenType: z.string(),
-  contracts: z.array(z.string()).nonempty({
+  contracts: z.array(z.string()).min(1,{
     message: "Contracts array cannot be empty",
   }),
 });
