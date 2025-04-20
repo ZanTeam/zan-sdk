@@ -7,9 +7,11 @@ import {
   avalanche,
   avalancheFuji,
   base,
+  baseSepolia,
   bsc,
   bscTestnet,
   fantom,
+  gravity,
   holesky,
   mainnet,
   mantle,
@@ -41,6 +43,7 @@ const convertToViemChain: Record<string, Chain> = {
   'arbitrum-one': arbitrum,
   'arbitrum-sepolia': arbitrumSepolia,
   'base-mainnet': base,
+  'base-sepolia': baseSepolia,
   'zksync-mainnet': zksync,
   'tron-mainnet': tron,
   'avalanche-mainnet': avalanche,
@@ -50,6 +53,7 @@ const convertToViemChain: Record<string, Chain> = {
   'mantle-mainnet': mantle,
   'mint-mainnet': mint,
   'artela-testnet': artelaTestnet,
+  'gravity_alpha-mainnet': gravity,
 };
 
 const praseInfoFromEndpoint = (endpoint: string) => {
