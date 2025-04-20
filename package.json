@@ -18,7 +18,8 @@
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
     "prepare": "husky",
     "test": "vitest",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "changeset": "changeset"
   },
   "keywords": [
     "zan",
@@ -36,6 +37,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.2",
     "@eslint/js": "^9.23.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
