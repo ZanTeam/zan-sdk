@@ -104,7 +104,3 @@ export const getChainFromEndpoint = (
 export const transformEndpoint = (endpoint: string) => {
   return endpoint.replace('/node/', '/data/');
 };
-
-export const transformWssEndpoint = (endpoint: string) => {
-  return endpoint.replace('https://', 'wss://');
-};
