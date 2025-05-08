@@ -5,8 +5,8 @@ export class Solana {
   readonly endpoint: string;
   readonly connection: Connection;
 
-  constructor({ endpoint }: ZanSolanaClientOptions) {
+  constructor({ endpoint, commitmentOrConfig }: ZanSolanaClientOptions) {
     this.endpoint = endpoint;
-    this.connection = new Connection(endpoint);
+    this.connection = new Connection(endpoint, commitmentOrConfig);
   }
 }
