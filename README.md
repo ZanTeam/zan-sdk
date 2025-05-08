@@ -39,6 +39,17 @@ const solana = new Solana({
 });
 
 solana.connection.getBlockHeight().then((res) => console.log(res));
+
+// WSS
+const solanaWss = new Solana({
+  endpoint: 'https://api.zan.top/node/v1/solana/mainnet/{YOUR API KEY}',
+  commitmentOrConfig: {
+    wsEndpoint: 'wss://api.zan.top/node/ws/v1/solana/mainnet/{YOUR API KEY}',
+    commitment: 'finalized',
+  },
+});
+
+sol.connection.onSlotChange((info) => console.log(info));
 ```
 
 ### ETH
@@ -52,6 +63,18 @@ const eth = new Core({
 
 eth.client.getBlockNumber().then((blockNumber) => {
   console.log(blockNumber);
+});
+
+// Wss
+import { CoreWss } from '@/core';
+
+const wss = new CoreWss({
+  endpoint:
+    'wss://api.zan.top/node/ws/v1/eth/mainnet/d4cf825de2084a60a591da3c2cb641e1',
+});
+
+const unsubscribe = wss.client.watchBlockNumber({
+  onBlockNumber: (block) => console.log(block),
 });
 ```
 
