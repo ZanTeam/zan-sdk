@@ -8,7 +8,7 @@ export class CoreWss {
   readonly client: PublicClient;
 
   constructor({ endpoint, chain, config }: CoreWssArguments) {
-    if (!endpoint.includes('ws')) {
+    if (!endpoint.startsWith('wss:')) {
       throw new ZANInvalidEndpointUrl(endpoint);
     }
 
