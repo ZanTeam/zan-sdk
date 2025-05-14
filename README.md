@@ -69,8 +69,7 @@ eth.client.getBlockNumber().then((blockNumber) => {
 import { CoreWss } from '@/core';
 
 const wss = new CoreWss({
-  endpoint:
-    'wss://api.zan.top/node/ws/v1/eth/mainnet/d4cf825de2084a60a591da3c2cb641e1',
+  endpoint: 'wss://api.zan.top/node/ws/v1/eth/mainnet/{YOUR API KEY}',
 });
 
 const unsubscribe = wss.client.watchBlockNumber({
