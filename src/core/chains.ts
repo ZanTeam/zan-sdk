@@ -56,7 +56,7 @@ const convertToViemChain: Record<string, Chain> = {
   'gravity_alpha-mainnet': gravity,
 };
 
-const praseInfoFromEndpoint = (endpoint: string) => {
+const praseInfoFromEndpoint = (endpoint: string, wss?: boolean) => {
   let paths: string[];
   let origin: string;
 
@@ -68,11 +68,15 @@ const praseInfoFromEndpoint = (endpoint: string) => {
   } catch (error) {
     throw new ZANInvalidEndpointUrl(endpoint);
   }
-  const chain = paths.at(3);
-  const network = paths.at(4);
-  const api = paths.at(5);
 
-  if (origin !== 'https://api.zan.top' || !api || !chain || !network) {
+  const bias = wss ? 1 : 0;
+
+  const chain = paths.at(3 + bias);
+  const network = paths.at(4 + bias);
+  const api = paths.at(5 + bias);
+  const originDomain = wss ? 'wss://api.zan.top' : 'https://api.zan.top';
+
+  if (origin !== originDomain || !api || !chain || !network) {
     throw new ZANInvalidEndpointUrl(endpoint);
   }
 
@@ -82,8 +86,16 @@ const praseInfoFromEndpoint = (endpoint: string) => {
   };
 };
 
-export const getChainFromEndpoint = (endpoint: string) => {
-  const { chain, network } = praseInfoFromEndpoint(endpoint);
+export const getChainFromEndpoint = (
+  endpoint: string,
+  endpointConfig?: {
+    wss?: boolean;
+  },
+) => {
+  const { chain, network } = praseInfoFromEndpoint(
+    endpoint,
+    endpointConfig?.wss,
+  );
   const viemChain = convertToViemChain[`${chain}-${network}`];
   if (viemChain) return viemChain;
   throw new ZANNotSupported(endpoint);
