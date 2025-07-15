@@ -49,7 +49,7 @@ const solanaWss = new Solana({
   },
 });
 
-sol.connection.onSlotChange((info) => console.log(info));
+solanaWss.connection.onSlotChange((info) => console.log(info));
 ```
 
 ### ETH
