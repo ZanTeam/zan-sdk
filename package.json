@@ -59,6 +59,10 @@
     "viem": "^2.23.5",
     "zod": "^3.24.2"
   },
+  "peerDependencies": {
+    "viem": "^2.23.5",
+    "@solana/web3.js": "^1.98.0"
+  },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts}": [
       "npm run lint:script",

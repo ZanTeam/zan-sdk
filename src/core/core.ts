@@ -1,10 +1,11 @@
 import { Client, createPublicClient, http, publicActions } from 'viem';
 import { CoreArguments, ZanClient } from './types';
-import { getChainFromEndpoint, transformEndpoint } from './chains';
+import { getChainFromEndpoint } from './chains';
 import { ntfEvmActions } from './advancedApi/nft_evm';
 import { ZanNftAndTokenActions } from './advancedApi/lib/type';
 import { ZANInvalidEndpointUrl } from '@/lib/errors/ZANInvalidEndpointUrl';
 import { tokenEvmActions } from './advancedApi/token_evm';
+import { transformEndpointToAdvanced } from '@/utils';
 
 // WIP: 后续添加 advanced Api
 export const buildZANActions = (advancedClient: Client) => {
@@ -32,7 +33,7 @@ export class Core {
 
     const advancedClient = createPublicClient({
       chain: chainSystem,
-      transport: http(transformEndpoint(this.endpoint)),
+      transport: http(transformEndpointToAdvanced(this.endpoint)),
     });
 
     const zanClient = baseClient.extend(buildZANActions(advancedClient));

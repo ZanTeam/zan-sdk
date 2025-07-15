@@ -3,5 +3,6 @@ export class ZANNotSupported extends Error {
     super(
       `The chain for endpoint URL ${endpointUrl} is not currently supported by the ZAN SDK.`
     );
+    this.name = 'ZANNotSupported';
   }
 }
