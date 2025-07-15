@@ -1,5 +1,4 @@
 import { Chain } from 'viem';
-import { ZANInvalidEndpointUrl } from '../lib/errors/ZANInvalidEndpointUrl';
 import {
   arbitrum,
   arbitrumSepolia,
@@ -26,6 +25,7 @@ import {
   zksync,
 } from 'viem/chains';
 import { ZANNotSupported } from '../lib/errors/ZANNotSupported';
+import { praseInfoFromEndpoint } from '@/utils';
 const ETH_MAINNET_NETWORK = 'eth-mainnet';
 
 // 缺少了 ton starknet tron-nile bitcoin sui aptos core chainbase
@@ -56,51 +56,14 @@ const convertToViemChain: Record<string, Chain> = {
   'gravity_alpha-mainnet': gravity,
 };
 
-const praseInfoFromEndpoint = (endpoint: string, wss?: boolean) => {
-  let paths: string[];
-  let origin: string;
-
-  try {
-    const url = new URL(endpoint);
-    paths = url.pathname.split('/');
-    origin = url.origin;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    throw new ZANInvalidEndpointUrl(endpoint);
-  }
-
-  const bias = wss ? 1 : 0;
-
-  const chain = paths.at(3 + bias);
-  const network = paths.at(4 + bias);
-  const api = paths.at(5 + bias);
-  const originDomain = wss ? 'wss://api.zan.top' : 'https://api.zan.top';
-
-  if (origin !== originDomain || !api || !chain || !network) {
-    throw new ZANInvalidEndpointUrl(endpoint);
-  }
-
-  return {
-    chain,
-    network,
-  };
-};
-
 export const getChainFromEndpoint = (
   endpoint: string,
   endpointConfig?: {
     wss?: boolean;
   },
 ) => {
-  const { chain, network } = praseInfoFromEndpoint(
-    endpoint,
-    endpointConfig?.wss,
-  );
+  const { chain, network } = praseInfoFromEndpoint(endpoint, endpointConfig);
   const viemChain = convertToViemChain[`${chain}-${network}`];
   if (viemChain) return viemChain;
   throw new ZANNotSupported(endpoint);
-};
-
-export const transformEndpoint = (endpoint: string) => {
-  return endpoint.replace('/node/', '/data/');
 };
