@@ -3,6 +3,7 @@ import { validateConfig } from '@/core/advancedApi/lib/utils';
 import { ZanNftMetaDataRequestSchema } from '@/core/advancedApi/lib/schema/zan_getNftMetaData';
 import { ZANInvalidInputParams } from '@/lib/errors/ZANInvalidInputParams';
 import { ZanNftIDsRequestSchema } from '@/core/advancedApi/lib/schema/zan_getNftIDs';
+import { ZodError } from 'zod';
 
 describe('init method', () => {
   it('validateConfig', () => {
@@ -17,8 +18,6 @@ describe('init method', () => {
     );
   });
 });
-
-import { ZodError } from 'zod';
 
 describe('ZANInvalidInputParams', () => {
   it('should format error messages correctly when errors are present', () => {
